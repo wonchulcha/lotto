@@ -26,7 +26,7 @@ if st.button('행운을 빌어요!!'):
           
           try:
               image = Image.open(img_path)
-              col.image(image, width=50)
+              col.image(image, width=30, use_column_width=True)
           except:
               col.write(str(num))
 
