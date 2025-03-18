@@ -36,14 +36,15 @@ if st.button('행운을 빌어요!!'):
       if i % 5== 0:
         st.write('## 행운의 숫자')
       cols = st.columns(6)
-      
-      for num, col in zip(sorted(line), cols):
-          # 이미지 파일 경로
+      container = st.container()
+      with container:
+        for num, col in zip(sorted(line), cols):
+            # 이미지 파일 경로
           img_path = f'numbers1_45/ball_{num}.png'
           
           try:
               image = Image.open(img_path)
-              col.image(image)
+              col.image(image, width=30)
           except:
               col.write(str(num))
 
