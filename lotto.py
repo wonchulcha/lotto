@@ -8,65 +8,84 @@ import io
 # HTML과 CSS를 사용하여 모바일에서도 6개 이미지가 한 행에 표시되도록 설정
 st.markdown("""
 <style>
+    /* 더 강력한 스타일링을 위해 !important 사용 */
+    /* 기존 컬럼 스타일 재정의 */
+    div.stHorizontalBlock, 
+    div.row-widget.stHorizontalBlock,
+    div[data-testid="stHorizontalBlock"] {
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        display: flex !important;
+    }
+    
+    /* 커스텀 행 스타일 */
     .lotto-row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
-        margin-bottom: 20px;
-        overflow-x: auto;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        margin-bottom: 20px !important;
+        overflow-x: auto !important;
+        width: 100% !important;
     }
     
     .lotto-ball {
-        flex: 0 0 auto;
-        width: 80px;
-        height: 80px;
-        margin-right: 15px;
-        text-align: center;
+        flex: 0 0 auto !important;
+        width: 80px !important;
+        height: 80px !important;
+        margin-right: 15px !important;
+        text-align: center !important;
     }
     
     .lotto-ball img {
-        width: 80px;
-        height: 80px;
+        width: 80px !important;
+        height: 80px !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
     }
     
     .lotto-number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background-color: #FFD700;
-        color: #000;
-        font-weight: bold;
-        font-size: 24px;
-        margin: 0 auto;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 80px !important;
+        height: 80px !important;
+        border-radius: 50% !important;
+        background-color: #FFD700 !important;
+        color: #000 !important;
+        font-weight: bold !important;
+        font-size: 24px !important;
+        margin: 0 auto !important;
     }
     
     /* 모바일 화면에서는 크기 조정 */
     @media (max-width: 640px) {
+        /* 스트림릿 기본 스타일 무시 */
+        div[data-testid="stVerticalBlock"] > div {
+            flex-direction: row !important;
+        }
+        
         .lotto-ball {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+            width: 40px !important;
+            height: 40px !important;
+            margin-right: 10px !important;
         }
         
         .lotto-ball img {
-            width: 40px;
-            height: 40px;
+            width: 40px !important;
+            height: 40px !important;
         }
         
         .lotto-number {
-            width: 40px;
-            height: 40px;
-            font-size: 16px;
+            width: 40px !important;
+            height: 40px !important;
+            font-size: 16px !important;
         }
         
         .lotto-row {
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 5px !important;
+            margin-bottom: 10px !important;
         }
     }
 </style>
@@ -117,7 +136,7 @@ if st.button('행운을 빌어요!!'):
         for num in sorted(line):
             if num in ball_images:
                 # 이미지 있을 경우 이미지 사용
-                html_row += f'<div class="lotto-ball"><img src="{ball_images[num]}"></div>'
+                html_row += f'<div class="lotto-ball"><img src="{ball_images[num]}" alt="{num}"></div>'
             else:
                 # 이미지 없을 경우 스타일링된 숫자 표시
                 html_row += f'<div class="lotto-ball"><div class="lotto-number">{num}</div></div>'
