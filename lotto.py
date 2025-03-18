@@ -18,7 +18,7 @@ if st.button('행운을 빌어요!!'):
       # 한 줄의 번호들을 가로로 나열
       if i % 5== 0:
         st.write('## 행운의 숫자')
-      cols = st.columns(6)
+      cols = st.columns(6, gap='small')
       
       for num, col in zip(sorted(line), cols):
           # 이미지 파일 경로
