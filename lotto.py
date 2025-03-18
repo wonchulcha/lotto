@@ -8,6 +8,23 @@ st.write('##### ')
 st.write('## 얼마나 사실라우:question:')
 num_of_lines = st.number_input(' ',min_value=1000, max_value=100000, value=5000, step=1000)//1000
 lucky_number = []
+
+# CSS로 컬럼 레이아웃 고정
+st.markdown("""
+    <style>
+    .css-1y0tads {  /* Streamlit의 columns 컨테이너 클래스 */
+        display: flex;
+        flex-wrap: nowrap;  /* 줄 바꿈 방지 */
+        justify-content: space-between;
+    }
+    .css-1y0tads > div {  /* 각 컬럼 스타일 */
+        flex: 1;  /* 동일한 너비로 고정 */
+        min-width: 0;  /* 오버플로우 방지 */
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 st.write('##### ')
 if st.button('행운을 빌어요!!'):
 
